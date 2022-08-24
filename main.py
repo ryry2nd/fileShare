@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import Flask
 from waitress import serve
 from Assets import *
@@ -12,14 +14,14 @@ SECRET_KEY = os.urandom(24)
 with open("dataPath.txt") as file:
     UPLOAD_FOLDER = file.read()
 
-with open("password.txt") as file:
-    PASSWORD = file.read()
-
 if not os.path.exists("password.txt"):
     open("password.txt", "x").close()
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+with open("password.txt") as file:
+    PASSWORD = file.read()
 
 app = Flask(__name__)
 
