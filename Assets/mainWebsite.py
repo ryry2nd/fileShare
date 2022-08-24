@@ -43,5 +43,8 @@ class MainWebsite:
 
         @app.route("/download_file", methods=["POST"])
         def download_file():
+            print(request.form.get("comp_select"))
             if request.form["password"] == app.config["password"]:
                 return send_file(os.path.join(self.app.config["UPLOAD_FOLDER"], request.form["fileName"]), as_attachment=True)
+            else:
+                return render_template("index.html")

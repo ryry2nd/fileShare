@@ -8,8 +8,15 @@ PORT = 80
 THREADS = 6
 
 SECRET_KEY = os.urandom(24)
-UPLOAD_FOLDER = 'data'
-PASSWORD = "p"
+
+with open("dataPath.txt") as file:
+    UPLOAD_FOLDER = file.read()
+
+with open("password.txt") as file:
+    PASSWORD = file.read()
+
+if not os.path.exists("password.txt"):
+    open("password.txt", "x").close()
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -29,5 +36,5 @@ main = MainWebsite(app)
 
 if __name__ == '__main__':
     print(f"connecting with ip: {IP} and port: {PORT}")
-    app.run(host=HOST, port=PORT)
-    #serve(app, host=HOST, port=PORT, threads=THREADS)
+    #app.run(host=HOST, port=PORT)
+    serve(app, host=HOST, port=PORT, threads=THREADS)
