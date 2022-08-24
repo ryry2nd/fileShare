@@ -3,15 +3,18 @@
 <html>
     <title>Hi</title>
     <body>
-        <form action="{{url_for('index')}}" method="POST">
+        <form action="{{url_for('index')}}" method="POST" enctype='multipart/form-data'>
             <input type="file" name="file"><br>
+
             <input type="submit">
         </form>
         <br><br>
-
-        <form action="{{url_for('download_file')}}" method="POST">
+        
+        <form action="{{url_for('download_file')}}" method="POST" >
             <label for="fileName">File Name:</label><br>
-            <input type="text" id="fileName" name="fileName"><br><br>
+            <input type="text" id="fileName" name="fileName" minlength="1"><br><br>
+
+            <option id="password" name="password" value="{{password}}"></option>
 
             <input type="submit">
 
