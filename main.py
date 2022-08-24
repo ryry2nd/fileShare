@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/bin/python
 
 from flask import Flask
 from waitress import serve
