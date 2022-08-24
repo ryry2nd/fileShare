@@ -3,25 +3,26 @@
 <html>
     <title>Hi</title>
     <body>
-        <form action="{{url_for('index')}}" method="POST" enctype='multipart/form-data'>
+        <form action="{{url_for('upload_file')}}" method="POST" enctype='multipart/form-data'>
             <input type="file" name="file"><br>
-
+            <input type="hidden" id="password" name="password" value="{{password}}">
             <input type="submit">
         </form>
         <br><br>
-        
-        <form action="{{url_for('download_file')}}" method="POST" autocomplete="off">
-            <label for="fileName">File Name:</label><br>
-            <input type="text" id="fileName" name="fileName" minlength="1"><br><br>
-
-            <input type="hidden" id="password" name="password" value="{{password}}"></option>
-
-            <input type="submit">
-
-        </form>
 
         {% for item in filenames %}
-            <p>{{item}}</p>
+            {{item}}
+            <form action="{{url_for('download_file')}}" method="POST">
+                <input type="submit" value="Download">
+                <input type="hidden" id="fileName" name="fileName" value="{{item}}">
+                <input type="hidden" id="password" name="password" value="{{password}}">
+            </form>
+            <form action="{{url_for('delete_file')}}" method="POST">
+                <input type="submit" value="Delete">
+                <input type="hidden" id="fileName" name="fileName" value="{{item}}">
+                <input type="hidden" id="password" name="password" value="{{password}}">
+            </form>
+            <br>
         {% endfor %}
     </body>
 </html>
