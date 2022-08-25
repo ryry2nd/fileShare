@@ -10,7 +10,7 @@ THREADS = 6
 SECRET_KEY = os.urandom(24)
 
 with open("dataPath.txt") as file:
-    UPLOAD_FOLDER = file.read()
+    UPLOAD_FOLDER = file.read().strip()
 
 if not os.path.exists("password.txt"):
     open("password.txt", "x").close()
@@ -19,7 +19,7 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 with open("password.txt") as file:
-    PASSWORD = file.read()
+    PASSWORD = file.read().strip()
 
 app = Flask(__name__)
 
